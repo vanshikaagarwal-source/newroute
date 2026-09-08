@@ -154,6 +154,11 @@ def simulate_blockage(blocked_start, blocked_end):
 
             except nx.NetworkXNoPath:
 
+                heapq.heappush(
+                    priority_queue,
+                    (-9999, truck["id"])
+                )
+                
                 results.append({
                     "id": truck["id"],
                     "affected": True,

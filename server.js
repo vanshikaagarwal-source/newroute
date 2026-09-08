@@ -1,6 +1,6 @@
 const express = require("express");
 const { spawn } = require("child_process");
-
+const PYTHON_PATH = process.env.PYTHON_PATH || "python";
 const app = express();
 const PORT = 3000;
 
@@ -24,10 +24,7 @@ app.get("/route", (req, res) => {
         });
     }
 
-    const python = spawn("C:\\Users\\VANSHIKA\\AppData\\Local\\Programs\\Python\\Python313\\python.exe", [        "main.py",
-        start,
-        destination
-    ]);
+    const python = spawn(PYTHON_PATH, ["main.py", start, destination]);
 
     let output = "";
     let error = "";
@@ -80,8 +77,8 @@ app.get("/reroute", (req, res) => {
             error: "blockedRoad format should be: Location1,Location2"
         });
     }
-
-    const python = spawn("C:\\Users\\VANSHIKA\\AppData\\Local\\Programs\\Python\\Python313\\python.exe", [              "main.py",
+        const python = spawn(PYTHON_PATH, [
+        "main.py",
         start,
         destination,
         blockedStart,
